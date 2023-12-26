@@ -9,10 +9,6 @@ namespace ContactRegistrationCourse.Controllers
         public IActionResult Index()
         {
             HomeModel home = new HomeModel();
-
-            home.Name = "Robert"; ;
-            home.Email = "Robertlsc@gmail.com";
-
             return View(home);
         }
 
