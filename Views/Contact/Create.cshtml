@@ -8,20 +8,24 @@
 </div>
 
 
-<form asp-controller="Contact" asp-action="CreateContact" method="post">
+<form asp-controller="Contact" asp-action="Create" method="post">
     <div class="mb-3">
         <label for="name">Nome</label>
         <input type="text" placeholder="Digite o nome do contato" class="form-control" asp-for="Name">
+        <p class="error-input">@Html.ValidationMessageFor(msg => msg.Name)</p>
     </div>
 
     <div class="mb-3">
         <label for="Email">Email</label>
         <input type="text" placeholder="Digite o email do contato" class="form-control" asp-for="Email">
+        <p class="error-input">@Html.ValidationMessageFor(msg => msg.Email)</p>
+
     </div>
 
     <div class="mb-6">
         <label for="Email">Celular</label>
         <input type="text" placeholder="Digite o celular do contato" class="form-control" asp-for="Phone">
+        <p class="error-input">@Html.ValidationMessageFor(msg => msg.Phone)</p>
     </div>
 
     <div class="mt-5">

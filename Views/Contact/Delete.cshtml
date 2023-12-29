@@ -1,11 +1,26 @@
-﻿@{
+﻿@model ContactModel
+
+@{
     ViewData["Title"] = "Deletar Contato";
 }
 
 <div class="text-center">
-    <h3>Realmente deseja apagar o contato?</h3>
+    <h3>Realmente deseja apagar o contato? @Model.Name</h3>
 </div>
-<div>
-    <a class="btn btn-danger" asp-controller="Contact" asp-action="Index">Cancelar Exclusão</a>
-    <a class="btn btn-primary" asp-controller="Contact" asp-action="Delete">Confirmar Exclusão</a>
-</div>
+<form asp-controller="Contact" asp-action="DeleteContact" method="post">
+    <input type="hidden" class="form-control" asp-for="Id" value=@Model.Id />
+
+    <div>
+        <div class="mt-5">
+            <div class="d-grid gap-2">
+                <a class="btn btn-danger" asp-controller="Contact" asp-action="Index">Cancelar Exclusão</a>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary" asp-controller="Contact" asp-action="DeleteContact">Confirmar Exclusão</button>
+            </div>
+        </div>
+    </div>
+</form>

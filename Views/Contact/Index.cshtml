@@ -7,39 +7,50 @@
 }
 
 <div class="text-center">
-    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-primary" role="button" asp-controller="Contact" asp-action="Create">Adicionar novo contato</a>
-    </div>
-    <br />
-    <h1 class="display-4">Listagem de Contatos</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Email</th>
-                <th scope="col">Celular</th>
-                <th scope="col"></th>
-
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var contact in Model)
-            {
+    @if (Model.Count > 0)
+    {
+        <h1 class="display-4">Listagem de Contatos</h1>
+        <table class="table">
+            <thead>
                 <tr>
-                    <th scope="row">@contact.Id</th>
-                    <td>@contact.Name</td>
-                    <td>@contact.Email</td>
-                    <td>@contact.Phone</td>
-                    <td>
-                        <div class="btn-group" role="group">
-                            <a rule="button" class="btn btn-primary" asp-controller="Contact" asp-action="Update">Editar</a>
-                            <a rule="button" class="btn btn-danger" asp-controller="Contact" asp-action="Delete">Excluir</a>
-                        </div>
-                    </td>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col"></th>
+
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (ContactModel contact in Model)
+                {
+                    <tr>
+                        <th scope="row">@contact.Id</th>
+                        <td>@contact.Name</td>
+                        <td>@contact.Email</td>
+                        <td>@contact.Phone</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a rule="button" class="btn btn-primary" asp-route-id="@contact.Id" asp-controller="Contact" asp-action="Update">Editar</a>
+                                <a rule="button" class="btn btn-danger" asp-route-id="@contact.Id" asp-controller="Contact" asp-action="Delete">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="mt-5">
+            <h2>
+                Você ainda não cadastrou nenhum contato
+            </h2>
+            <a class="btn btn-primary" role="button" asp-controller="Contact" asp-action="Create">Adicionar novo contato</a>
+        </div>
+
+
+    }
+
 </div>
 
